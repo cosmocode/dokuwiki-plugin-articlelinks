@@ -35,7 +35,7 @@ class syntax_plugin_articlelinks extends DokuWiki_Syntax_Plugin {
      * @param string $mode Parser mode
      */
     public function connectTo($mode) {
-        $this->Lexer->addSpecialPattern('(?:<relatedarticles>|<mainarticle>).*?</article>',$mode,'plugin_articlelinks');
+        $this->Lexer->addSpecialPattern('<(?:relatedsection|relatedarticle|relatedarticles|mainarticle)>.*?</(?:article|section)>',$mode,'plugin_articlelinks');
     }
 
     /**
@@ -54,21 +54,25 @@ class syntax_plugin_articlelinks extends DokuWiki_Syntax_Plugin {
         switch ($type) {
             case 'relatedarticles':
                 $links = $this->getLang('related articles');
+                $endtag = '</article>';
                 break;
             case 'relatedarticle':
                 $links = $this->getLang('related article');
+                $endtag = '</article>';
                 break;
             case 'mainarticle':
                 $links = $this->getLang('main article');
+                $endtag = '</article>';
                 break;
             case 'relatedsection':
                 $links = $this->getLang('related section');
+                $endtag = '</section>';
                 break;
             default:
                 $links = '';
         }
 
-        $links .= substr($match,strpos($match, '>') + 1 , strpos($match, '</article>') - strpos($match, '>') -1);
+        $links .= substr($match,strpos($match, '>') + 1 , strpos($match, $endtag) - strpos($match, '>') -1);
         $data['links'] =  p_get_instructions($links);
         return $data;
     }
