@@ -1,0 +1,7 @@
+base   articlelinks
+author Michael Große
+email  dokuwiki@cosmocode.de
+date   2016-01-13
+name   articlelinks plugin
+desc   Creates mediawiki style links to main articles for a topic
+url    https://dokuwiki.org/plugin:articlelinks
