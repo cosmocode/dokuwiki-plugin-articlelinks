@@ -55,8 +55,14 @@ class syntax_plugin_articlelinks extends DokuWiki_Syntax_Plugin {
             case 'relatedarticles':
                 $links = $this->getLang('related articles');
                 break;
+            case 'relatedarticle':
+                $links = $this->getLang('related article');
+                break;
             case 'mainarticle':
                 $links = $this->getLang('main article');
+                break;
+            case 'relatedsection':
+                $links = $this->getLang('related section');
                 break;
             default:
                 $links = '';
